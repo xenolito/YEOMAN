@@ -1,3 +1,6 @@
 import firma from "console-signature";
 
-firma();
+firma({
+  author: "Aisling",
+  url: "www.aisling.com",
+});
