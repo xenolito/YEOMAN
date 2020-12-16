@@ -3,6 +3,7 @@ const path = require("path");
 const config = require("./gulp/config");
 const BundleAnalyzerPlugin = require("webpack-bundle-analyzer")
   .BundleAnalyzerPlugin;
+const RemoveConsolePlugin = require("remove-console-plugin");
 
 function createConfig(env) {
   let isProduction, webpackConfig;
@@ -32,6 +33,7 @@ function createConfig(env) {
       //     filename: '[name].js',
       //     minChunks: Infinity
       // }),
+      new RemoveConsolePlugin({ remove: ["log"] }),
       new webpack.LoaderOptionsPlugin({
         options: {
           eslint: {
@@ -44,8 +46,6 @@ function createConfig(env) {
         jQuery: "jquery",
         "window.jQuery": "jquery",
       }),
-      new webpack.NoEmitOnErrorsPlugin(),
-
       new BundleAnalyzerPlugin({
         analyzerMode: "static",
         analyzerPort: 4000,
@@ -87,6 +87,7 @@ function createConfig(env) {
     },
     optimization: {
       minimize: isProduction,
+      noEmitOnErrors: true,
     },
     module: {
       rules: [
