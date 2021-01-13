@@ -19,7 +19,8 @@ function createConfig(env) {
     context: path.join(__dirname, config.src.js),
     entry: {
       // vendor: ['jquery'],
-      app: "./app.js",
+      //polyfill: "@babel/polifill",
+      app: ["babel-polyfill", "./app.js"],
     },
     output: {
       path: path.join(__dirname, config.dest.js),
@@ -106,6 +107,9 @@ function createConfig(env) {
           test: /\.js$/,
           loader: "babel-loader",
           exclude: [path.resolve(__dirname, "node_modules")],
+          query: {
+            presets: ["env", "stage-0"],
+          },
         },
         {
           test: /\.(glsl|frag|vert)$/,

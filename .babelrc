@@ -1,12 +1,17 @@
 {
   "presets": [
-    ["env", {
-      "targets": {
-        "browsers": ["last 2 versions"]
+    [
+      "env",
+      {
+        "useBuiltIns": "usage"
       }
-    }]
+    ]
   ],
   "parserOpts": {
-  	"plugins": ["transform-object-rest-spread", "transform-es2015-spread", "transform-es2015-destructuring"]
+    "plugins": [
+      "transform-object-rest-spread",
+      "transform-es2015-spread",
+      "transform-es2015-destructuring"
+    ]
   }
 }
