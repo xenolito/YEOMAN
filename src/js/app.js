@@ -23,18 +23,23 @@ function errorHandle(err) {
 }
 
 async function x() {
+  const url = "https://pictau.com";
+  const content = "portfolios/?per_page=20";
+
   const data = await (
-    await fetch(
-      "https://www.caisocios.com/wp-json/wp/v2/posts/?per_page=20"
-    ).catch(errorHandle)
+    await fetch(`${url}/wp-json/wp/v2/${content}`).catch(errorHandle)
   ).json();
-  console.log("Hola que ase");
+
+  Object.keys(data).forEach((key) =>
+    console.log(key, data[key].title.rendered)
+  );
+
   console.table(data);
 }
 
 x();
 
-fetch(`https://www.caisocios.com/wp-json/wp/v2/posts`, {
+/* fetch(`https://www.caisocios.com/wp-json/wp/v2/posts`, {
   // ? Remove method and headers when performing a GET request
   // ? POST,PATCH must be uppercase
   method: "GET",
@@ -45,3 +50,4 @@ fetch(`https://www.caisocios.com/wp-json/wp/v2/posts`, {
   .then((response) => response.json())
   // ? use next line to do something meaningful with the data
   .then((json) => console.table(json));
+ */
