@@ -34,7 +34,7 @@ async function x() {
     console.log(key, data[key].title.rendered)
   );
 
-  console.table(data);
+  // console.table(data);
 }
 
 x();
